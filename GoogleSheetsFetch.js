@@ -15,7 +15,7 @@ var generateMethodLog = function(function_name) {
   return(methodLog);
 }
 
-module.exports = (published_sheet_url) => {
+module.exports = (published_sheet_url, comma_replacement_char) => {
 
   console.log = generateMethodLog("GoogleSheetsFetch");
 
@@ -42,7 +42,16 @@ module.exports = (published_sheet_url) => {
           entry = _.map(_.split(entry, ","), (e) => (_.trim(e)) );
           
           _.forEach(keys, (key, index) => {
-            data[key] = entry[index]
+            if(!_.isEmpty(this.comma_replacement) && _.includes(entry[index], this.comma_replacement)){
+              let sample = entry[index];
+              while(_.includes(sample, this.comma_replacement)){
+                sample = _.replace(sample, this.comma_replacement, ",");
+              }
+              data[key] = sample;
+            }
+            else{
+              data[key] = entry[index];
+            }
           });
           
           return(data);
@@ -58,9 +67,8 @@ module.exports = (published_sheet_url) => {
   }
 
   return({
-    
     url: published_sheet_url,
-
+    comma_replacement: comma_replacement_char,
     getURL,
     setURL,
     getData,
