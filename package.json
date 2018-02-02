@@ -1,0 +1,24 @@
+{
+  "name": "g-sheets-fetch",
+  "version": "1.0.0",
+  "description": "Fetch data from a public Google Sheets file and convert to JSON ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacquesFernandes/g-sheets-fetch.git"
+  },
+  "author": "Jacques 'Lawrenz' Fernandes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JacquesFernandes/g-sheets-fetch/issues"
+  },
+  "homepage": "https://github.com/JacquesFernandes/g-sheets-fetch#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "chalk": "^2.3.0",
+    "lodash": "^4.17.4"
+  }
+}
