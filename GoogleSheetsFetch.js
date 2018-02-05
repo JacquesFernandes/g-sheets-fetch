@@ -2,13 +2,11 @@ var axios = require('axios');
 var _ = require('lodash');
 var chalk = require('chalk');
 
-let old_log = console.log;
-
 var generateMethodLog = function(function_name) {
 
   let methodLog = (...text) => {
     let ret = chalk.blue("["+function_name+"] ")+_.join(text," ");
-    old_log(ret);
+    console.log(ret);
     return(ret);
   }
 
@@ -17,7 +15,7 @@ var generateMethodLog = function(function_name) {
 
 module.exports = (published_sheet_url, comma_replacement_char) => {
 
-  console.log = generateMethodLog("GoogleSheetsFetch");
+  methodLog = generateMethodLog("GoogleSheetsFetch");
 
   var getURL = function() {
     return(this.url)
@@ -57,7 +55,7 @@ module.exports = (published_sheet_url, comma_replacement_char) => {
           return(data);
         });
         
-        //console.log(JSON.stringify(json_data));
+        //methodLog(JSON.stringify(json_data));
         resolve(json_data);
       })
       .catch((err) => {
